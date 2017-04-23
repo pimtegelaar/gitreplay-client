@@ -11,8 +11,8 @@ export class CommitService {
   constructor(private http: Http) {
   }
 
-  init() {
-    return this.http.post(this.baseUrl + "/init", null)
+  init(configuration: any) {
+    return this.http.post(this.baseUrl + "/init", configuration)
   }
 
   setCurrentCommit(commit: string) {

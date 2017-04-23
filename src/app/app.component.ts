@@ -12,6 +12,10 @@ export class AppComponent {
   currentCommit = null;
   currentIndex = 0;
 
+  repositoryLocation = null;
+  localBranch = null;
+  upstreamBranch = null;
+
   commits = [];
 
   constructor(private commitService: CommitService) {
@@ -19,7 +23,11 @@ export class AppComponent {
   }
 
   onInit() {
-    this.commitService.init().subscribe(
+    this.commitService.init({
+      repositoryLocation: this.repositoryLocation,
+      localBranch: this.localBranch,
+      upstreamBranch: this.upstreamBranch
+    }).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     );
@@ -31,13 +39,13 @@ export class AppComponent {
   }
 
   commitIndexOf(o: any) {
-  for (let i = 0; i < this.commits.length; i++) {
-    if (this.commits[i].name == o.name) {
-      return i;
+    for (let i = 0; i < this.commits.length; i++) {
+      if (this.commits[i].name == o.name) {
+        return i;
+      }
     }
+    return -1;
   }
-  return -1;
-}
 
   onSetCurrentCommit(currentCommit: any) {
     this.updateCurrentCommit(currentCommit);

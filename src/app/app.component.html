@@ -1,7 +1,9 @@
 <h1>
   {{title}}
 </h1>
-
+<input type="text" class="text-primary" [(ngModel)]="repositoryLocation" placeholder="repository location">
+<input type="text" class="text-primary" [(ngModel)]="localBranch" placeholder="local branch">
+<input type="text" class="text-primary" [(ngModel)]="upstreamBranch" placeholder="upstream branch">
 <button class="btn btn-primary" (click)="onInit()">Initialize</button>
 <hr/>
 <button class="btn btn-primary" (click)="onGetCommits()">Load commits</button>
