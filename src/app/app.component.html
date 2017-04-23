@@ -1,3 +1,46 @@
 <h1>
   {{title}}
 </h1>
+
+<button class="btn btn-primary" (click)="onInit()">Initialize</button>
+<hr/>
+<button class="btn btn-primary" (click)="onGetCommits()">Load commits</button>
+<hr/>
+<button class="btn btn-primary" (click)="onGetCurrentCommit()">Get current commit</button>
+<h3>Current commit</h3>
+<table class="table" *ngIf="currentCommit">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Message</th>
+    <th>Index</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr [ngStyle]="{backgroundColor: 'lightyellow'}">
+    <td><code>{{currentCommit.name}}</code></td>
+    <td>{{currentCommit.message}}</td>
+    <td>{{currentIndex}}</td>
+  </tr>
+  </tbody>
+</table>
+<hr/>
+<h3>Commits</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Message</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let commit of commits; let i = index;" [ngStyle]="{backgroundColor: getColor(i)}">
+    <td><code>{{commit.name}}</code></td>
+    <td>{{commit.message}}</td>
+    <td>
+      <button class="btn btn-primary" (click)="onSetCurrentCommit(commit)">Set current</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
