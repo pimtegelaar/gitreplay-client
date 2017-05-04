@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 @Injectable()
 export class CommitService {
 
-  private baseUrl: string = "http://localhost:8080/gitreplay/build";
+  private baseUrl: string = "http://localhost:8090/gitreplay/build";
 
   constructor(private http: Http) {
   }
