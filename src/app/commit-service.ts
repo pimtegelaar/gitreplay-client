@@ -16,7 +16,25 @@ export class CommitService {
   }
 
   setCurrentCommit(commit: string) {
-    return this.http.post(this.baseUrl + "/current-commit/" + commit, null)
+    return this.http.post(this.baseUrl + "/current-commit/" + commit, null);
+  }
+
+  finished() {
+    return this.http.post(this.baseUrl + "/finished/", null);
+  }
+
+  pauseGitReplay() {
+    return this.http.put(this.baseUrl + "/pause-resume/", null)
+      .map(
+        (response: Response) => {
+          return response.json();
+        }
+      ).catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw(error);
+        }
+      );
   }
 
   getCurrentCommit() {

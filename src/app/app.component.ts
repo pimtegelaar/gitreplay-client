@@ -12,6 +12,9 @@ export class AppComponent {
   currentCommit = null;
   currentIndex = 0;
 
+  replayStatus = 'NONE';
+  pauseResumeButtonText = 'Pause';
+
   repositoryLocation = null;
   localBranch = null;
   upstreamBranch = null;
@@ -28,6 +31,25 @@ export class AppComponent {
       localBranch: this.localBranch,
       upstreamBranch: this.upstreamBranch
     }).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
+
+  onPauseGitReplay() {
+    this.commitService.pauseGitReplay().subscribe(
+      (response) => {
+        console.log('Replay status is now: ' + response);
+        this.replayStatus = response;
+        this.pauseResumeButtonText = response === 'PAUSED' ? 'Resume' : 'Pause';
+      },
+      (error) => console.log(error)
+    );
+  }
+
+
+  onFinished() {
+    this.commitService.finished().subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     );
@@ -61,7 +83,6 @@ export class AppComponent {
       },
       (error) => console.log(error)
     );
-
   }
 
   onGetCommits() {

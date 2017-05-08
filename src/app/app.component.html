@@ -9,6 +9,10 @@
 <button class="btn btn-primary" (click)="onGetCommits()">Load commits</button>
 <hr/>
 <button class="btn btn-primary" (click)="onGetCurrentCommit()">Get current commit</button>
+<hr/>
+<button class="btn btn-primary" (click)="onPauseGitReplay()">{{pauseResumeButtonText}}</button>
+<hr/>
+<button class="btn btn-primary" (click)="onFinished()">Finished</button>
 <h3>Current commit</h3>
 <table class="table" *ngIf="currentCommit">
   <thead>
